@@ -9,7 +9,7 @@ import re
 
 csv = pandas.read_csv("./masterSentences.csv")
 
-## all PinYin in sentences
+# All PinYin in masterSentences.csv
 msPinyins= []
 for sentence in csv["Pronunciation2"]:
     for pronunciation in re.split(" |\.|\?", sentence):
@@ -18,10 +18,10 @@ for sentence in csv["Pronunciation2"]:
             msPinyins.append(basePronunciation)
 
 
-# all PinYin from PinYin Table
+# All PinYin from pinYinTable.csv
 pinYinList = pandas.read_csv("./pinYinTable.csv", encoding='utf-16-le')
 
-# pinyin coverage dict
+# Initialize usage dict
 masterInitialDict = {}
 for initial in pinYinList.columns:
     masterInitialDict[initial] = 0
@@ -29,7 +29,7 @@ masterFinalDict = {}
 for final in pinYinList.iloc[:,0]:
     masterFinalDict[final] = 0
 
-# get finals and initials count
+# Get all finals and initials count used in sentences
 pinYinList.set_index('index', inplace=True)
 for py in msPinyins:
     for word in pinYinList:
@@ -41,15 +41,21 @@ for py in msPinyins:
             masterInitialDict[initial] = masterInitialDict[initial] + 1
 
 finalsNeverUsed = [k for k, v in masterFinalDict.items() if v == 0]
+finalsNeverUsedCount = len(finalsNeverUsed)
+finalsKeyCount = len(masterFinalDict.keys())
+
 initialsNeverUsed = [k for k, v in masterInitialDict.items() if v == 0]
+initialsNeverUsedCount = len(initialsNeverUsed)
+initialsKeyCount = len(masterInitialDict.keys()) 
+
 
 
 # print results
-print("DONE: Finals you used : %i /%i (%f)"%(len(masterFinalDict.keys())-len(finalsNeverUsed), len(masterFinalDict.keys()), 100-len(finalsNeverUsed)*1.0/len(masterFinalDict.keys())*100))
+print("DONE: Finals you used : %i /%i (%f)"%(finalsKeyCount - finalsNeverUsedCount, finalsKeyCount, 100-finalsNeverUsedCount*1.0/finalsKeyCount*100))
 print("Let's use Finals below!")
 print(finalsNeverUsed)
 
-print("\nDONE: Initials you used : %i /%i (%f)"%(len(masterInitialDict.keys())-len(initialsNeverUsed), len(masterInitialDict.keys()), 100-len(initialsNeverUsed)*1.0/len(masterInitialDict.keys())*100))
+print("\nDONE: Initials you used : %i /%i (%f)"%(initialsKeyCount - initialsNeverUsedCount, initialsKeyCount, 100-initialsNeverUsedCount*1.0/initialsKeyCount*100))
 print("Let's use initials below!")
 print(initialsNeverUsed)
 
