@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 from pprint import pprint 
 import numpy as np
-import pandas
 import unidecode
+import webbrowser
+import pyperclip
+import pandas
 import re
 
 csv = pandas.read_csv("./masterSentences.csv", encoding='utf-16-le')
@@ -50,3 +52,14 @@ print(finalsNeverUsed)
 print("\nDONE: Initials you used : %i /%i (%f)"%(len(masterInitialDict.keys())-len(initialsNeverUsed), len(masterInitialDict.keys()), 100-len(initialsNeverUsed)*1.0/len(masterInitialDict.keys())*100))
 print("Let's use initials below!")
 print(initialsNeverUsed)
+
+
+print("===================")
+
+sentences = ""
+for sentence in csv["Chinese"]:
+    sentences = "%s\n\n\n\n\n\n"%sentence
+
+pyperclip.copy(sentences)
+print("Copied senttences to your clipboard. Visit https://ttsmp3.com/ and convert above to MP3!!")
+webbrowser.open('https://ttsmp3.com/')  # Go to example.com
