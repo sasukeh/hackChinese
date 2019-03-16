@@ -7,7 +7,7 @@ import pyperclip
 import pandas
 import re
 
-csv = pandas.read_csv("./masterSentences.csv", encoding='utf-16-le')
+csv = pandas.read_csv("./masterSentences.csv")
 
 ## all PinYin in sentences
 msPinyins= []
