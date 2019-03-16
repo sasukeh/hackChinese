@@ -58,7 +58,7 @@ print("===================")
 
 sentences = ""
 for sentence in csv["Chinese"]:
-    sentences = "%s\n\n\n\n\n\n"%sentence
+    sentences += "%s\n\n\n\n\n\n"%sentence
 
 pyperclip.copy(sentences)
 print("Copied senttences to your clipboard. Visit https://ttsmp3.com/ and convert above to MP3!!")
