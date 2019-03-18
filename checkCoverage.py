@@ -17,7 +17,7 @@ for sentence in csv["Pronunciation2"]:
 
 
 # All PinYin from pinYinTable.csv
-pinYinList = pandas.read_csv("./pinYinTable.csv", encoding='utf-16-le')
+pinYinList = pandas.read_csv("./resources/pinYinTable.csv", encoding='utf-16-le')
 
 # Initialize usage dict
 masterInitialDict = {}
