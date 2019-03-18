@@ -59,13 +59,12 @@ print("\nDONE: Initials you used : %i /%i (%f)"%(initialsKeyCount - initialsNeve
 print("Let's use initials below!")
 print(initialsNeverUsed)
 
-
-print("===================")
-
 sentences = ""
 for sentence in csv["Chinese"]:
     sentences += "%s\n\n\n\n\n\n"%sentence
 
 pyperclip.copy(sentences)
-print("Copied senttences to your clipboard. Visit https://ttsmp3.com/ and convert above to MP3!!")
+print("\n\nCopied senttences to your clipboard. Visit https://ttsmp3.com/ and convert above to MP3!!")
 webbrowser.open('https://ttsmp3.com/')  # Go to example.com
+
+
