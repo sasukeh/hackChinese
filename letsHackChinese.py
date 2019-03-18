@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from pprint import pprint 
-import numpy as np
 import unidecode
 import webbrowser
 import pyperclip
@@ -51,18 +49,16 @@ initialsKeyCount = len(masterInitialDict.keys())
 
 
 # print results
-print("DONE: Finals you used : %i /%i (%f)"%(finalsKeyCount - finalsNeverUsedCount, finalsKeyCount, 100-finalsNeverUsedCount*1.0/finalsKeyCount*100))
-print("Let's use Finals below!")
+print("Finals Coverage: %f"%(100-finalsNeverUsedCount*1.0/finalsKeyCount*100))
+print("Lets use below finals to complete your master sentences!")
 print(finalsNeverUsed)
-
-print("\nDONE: Initials you used : %i /%i (%f)"%(initialsKeyCount - initialsNeverUsedCount, initialsKeyCount, 100-initialsNeverUsedCount*1.0/initialsKeyCount*100))
-print("Let's use initials below!")
+print("Initials Coverage: %f"%(100-initialsNeverUsedCount*1.0/initialsKeyCount*100))
+print("Let's use below initials to complete your master sentences!")
 print(initialsNeverUsed)
 
 sentences = ""
 for sentence in csv["Chinese"]:
     sentences += "%s\n\n\n\n\n\n"%sentence
-
 pyperclip.copy(sentences)
 print("\n\nCopied senttences to your clipboard. Visit https://ttsmp3.com/ and convert above to MP3!!")
 webbrowser.open('https://ttsmp3.com/')  # Go to example.com
